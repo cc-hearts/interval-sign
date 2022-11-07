@@ -1,4 +1,9 @@
-function addInterval(callback, time = 1000) {
+/**
+ * @author heart
+ * @description
+ * @Date 2022-11-08
+ */
+function addInterval(callback, time = 1000 * 10) {
   callback._timer = setInterval(() => {
     callback instanceof Function && callback();
   }, time);
