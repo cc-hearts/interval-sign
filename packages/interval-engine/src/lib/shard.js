@@ -19,11 +19,10 @@ function compareHourAndMinutes(originDate) {
   if (!originDate) {
     return;
   }
-  // 一分钟轮询一次 获取需要轮训的操作
-  // 时分相等则运行
   const currentDate = getHoursAndMinutes(new Date());
   // Logger.log("currentDate :", currentDate);
   // Logger.log("originDate :", originDate);
+  originDate = formatHoursAndMinutes(originDate);
   return currentDate === originDate;
 }
 

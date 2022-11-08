@@ -4,7 +4,7 @@
  * @Date 2022-11-03
  */
 
-import { Interval, Config, Sql, Fetch} from "./lib/index.js";
+import { Interval, Config, Sql, Fetch } from "./lib/index.js";
 import Logger from "./lib/log.js";
 
 // 每分钟的轮询
@@ -47,12 +47,7 @@ function useTask(data) {
         // const originDate = Shard.formatHoursAndMinutes(inter_time);
         const idVal = await redisImpl.get(id);
         Logger.log("redis id:", id, "redis data:", idVal);
-        if (
-          !idVal
-          // Shard.compareHourAndMinutes(originDate) &&
-          // !Shard.compareISODate(update_time)
-        ) {
-          // Interval.addTask(id, () => {
+        if (!idVal && Shard.compareHourAndMinutes(inter_time)) {
           Logger.log("===============task start==============");
           // Logger.log("inter_time", originDate);
           // Logger.log("update_time", update_time);
@@ -62,7 +57,6 @@ function useTask(data) {
             await redisImpl.set(id, url, "EX", 60 * 60 * 24);
             Logger.log("=====================end===============");
           });
-          // });
         }
       } catch (e) {
         Logger.log("jsonParser error:", e);
