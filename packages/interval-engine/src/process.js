@@ -4,7 +4,7 @@
  * @Date 2022-11-03
  */
 
-import { Interval, Config, Sql, Fetch } from "./lib/index.js";
+import { Interval, Config, Sql, Fetch, Shard } from "./lib/index.js";
 import Logger from "./lib/log.js";
 
 // 每分钟的轮询
