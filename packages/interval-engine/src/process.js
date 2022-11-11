@@ -32,7 +32,9 @@ async function initTask() {
 let interTask;
 // 副作用的任务
 function useTask(data) {
+
   const { mysqlImpl, redisImpl } = data;
+  
   interTask = async () => {
     // 轮询需要做的操作:
     const arr = await Sql.searchAllTask(mysqlImpl);

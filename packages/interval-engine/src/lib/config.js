@@ -6,9 +6,7 @@ import * as IoRedis from "ioredis";
 function getYamlConfig() {
   try {
     // pwd = /Users/heart/Desktop/i/interval/interval-engine
-    return load(
-      readFileSync(process.cwd() + "/app.yaml", { encoding: "utf8" })
-    );
+    return load(readFileSync(process.cwd() + "/app.yaml", { encoding: "utf8" }));
   } catch (e) {
     Logger.log(e);
   }
