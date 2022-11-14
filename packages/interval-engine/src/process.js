@@ -34,7 +34,7 @@ let interTask;
 function useTask(data) {
 
   const { mysqlImpl, redisImpl } = data;
-  
+
   interTask = async () => {
     // 轮询需要做的操作:
     const arr = await Sql.searchAllTask(mysqlImpl);
@@ -48,7 +48,7 @@ function useTask(data) {
         params = JSON.parse(params);
         // const originDate = Shard.formatHoursAndMinutes(inter_time);
         const idVal = await redisImpl.get(id);
-        Logger.log("redis id:", id, "redis data:", idVal);
+        // Logger.log("redis id:", id, "redis data:", idVal);
         if (!idVal && Shard.compareHourAndMinutes(inter_time)) {
           Logger.log("===============task start==============");
           // Logger.log("inter_time", originDate);
