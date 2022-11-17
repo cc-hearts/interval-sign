@@ -10,11 +10,11 @@ COPY package.json /usr/interval/package.json
 
 RUN npm config set registry https://registry.npm.taobao.org
 
-RUN npm install pnpm
+RUN npm install -g pnpm
 
-RUN npx pnpm install
+RUN pnpm install
 
-RUN npx pnpm --filter @repo/interval-engine install
+RUN pnpm --filter @repo/interval-engine install
 
 EXPOSE 5782
 
