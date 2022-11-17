@@ -1,4 +1,4 @@
-import { bootstrap } from "./process";
+import { bootstrap } from "./process.js";
 
 (function () {
   bootstrap();

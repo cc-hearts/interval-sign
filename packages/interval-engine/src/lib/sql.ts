@@ -1,6 +1,6 @@
 import { Connection} from "mysql2";
-import Logger from "./log";
-import { getCurrentDateFormat } from "./shard";
+import Logger from "./log.js";
+import { getCurrentDateFormat } from "./shard.js";
 import type { InterEntity } from "./types";
 async function searchAllTask(sqlImpl: Connection): Promise<Array<InterEntity>> {
   return new Promise((resolve, reject) => {

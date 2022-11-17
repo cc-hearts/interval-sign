@@ -4,7 +4,7 @@
  * @Date 2022-11-03
  */
 import axios from "axios";
-import Logger from "./log";
+import Logger from "./log.js";
 function formatMethod(method) {
   switch (String(method).toUpperCase()) {
     case "0":

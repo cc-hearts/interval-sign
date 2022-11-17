@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { Connection, createConnection } from "mysql2";
 import { load } from "js-yaml";
-import Logger from "./log";
+import Logger from "./log.js";
 import * as IoRedis from "ioredis";
 import type { Config } from "./types";
 

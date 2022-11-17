@@ -6,8 +6,8 @@
 
 import Redis from "ioredis";
 import { Connection } from "mysql2";
-import { Interval, Config, Sql, Fetch, Shard } from "./lib/index";
-import Logger from "./lib/log";
+import { Interval, Config, Sql, Fetch, Shard } from "./lib/index.js";
+import Logger from "./lib/log.js";
 import type { timerCallback } from "./lib/types";
 interface taskImpl {
   mysqlImpl: Connection;
