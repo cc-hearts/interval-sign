@@ -10,6 +10,7 @@ export interface Config {
     host: string;
     password: string;
     user: string;
+    port: number;
     database: string;
   };
 }

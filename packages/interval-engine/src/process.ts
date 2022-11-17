@@ -8,6 +8,7 @@ import Redis from "ioredis";
 import { Connection } from "mysql2";
 import { Interval, Config, Sql, Fetch, Shard } from "./lib/index.js";
 import Logger from "./lib/log.js";
+import { getHeapUsage } from "./lib/shard.js";
 import type { timerCallback } from "./lib/types";
 interface taskImpl {
   mysqlImpl: Connection;
@@ -32,6 +33,7 @@ function useTask(data: taskImpl) {
 
   interTask = async () => {
     // 轮询需要做的操作:
+    getHeapUsage()
     const arr = await Sql.searchAllTask(mysqlImpl);
     arr instanceof Array &&
       arr.forEach(async (acc) => {

@@ -6,6 +6,7 @@
   "scripts": {
     "start:engine": "pnpm --filter @repo/interval-engine start",
     "build:engine": "pnpm --filter @repo/interval-engine build",
+    "build:engine:ts": "pnpm --filter @repo/interval-engine start:ts",
     "start:v3": "pnpm --filter @repo/interval-task dev"
   },
   "keywords": [

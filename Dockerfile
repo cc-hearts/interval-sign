@@ -20,4 +20,4 @@ RUN cp /usr/interval/packages/interval-engine/app.yaml /usr/interval/packages/in
 
 EXPOSE 5782
 
-CMD pnpm start:engine
+CMD pnpm start:engine:ts
