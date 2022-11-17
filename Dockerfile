@@ -12,7 +12,7 @@ RUN npm config set registry https://registry.npm.taobao.org
 
 RUN npm install pnpm
 
-RUN pnpm install
+RUN npx pnpm install
 
 EXPOSE 5782
 
