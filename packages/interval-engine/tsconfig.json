@@ -1,3 +1,7 @@
 {
-  "extends": "@cc-heart/utils"
+  "extends": "@cc-heart/utils",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "checkJs": false
+  },
 }

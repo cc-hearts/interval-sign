@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:engine": "pnpm --filter @repo/interval-engine start",
+    "build:engine": "pnpm --filter @repo/interval-engine build",
     "start:v3": "pnpm --filter @repo/interval-task dev"
   },
   "keywords": [

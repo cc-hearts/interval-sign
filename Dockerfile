@@ -14,6 +14,7 @@ RUN pnpm config set registry https://registry.npmmirror.com/
 
 RUN pnpm install
 
+RUN  pnpm build:engine
 
 EXPOSE 5782
 
