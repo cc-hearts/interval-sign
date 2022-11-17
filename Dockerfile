@@ -14,6 +14,8 @@ RUN npm install pnpm
 
 RUN npx pnpm install
 
+RUN npx pnpm --filter @repo/interval-engine install
+
 EXPOSE 5782
 
 CMD npm run start:engine
