@@ -16,6 +16,8 @@ RUN pnpm install
 
 RUN  pnpm build:engine
 
+RUN cp /usr/interval/packages/interval-engine/app.yaml /usr/interval/packages/interval-engine/dist/app.yaml
+
 EXPOSE 5782
 
 CMD pnpm start:engine
