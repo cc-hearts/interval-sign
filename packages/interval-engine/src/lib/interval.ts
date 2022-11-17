@@ -3,20 +3,22 @@
  * @description
  * @Date 2022-11-08
  */
-function addInterval(callback, time = 1000 * 10) {
+import type { callback, timerCallback } from "./types";
+
+function addInterval(callback: timerCallback, time = 1000 * 10) {
   callback._timer = setInterval(() => {
     callback instanceof Function && callback();
   }, time);
 }
 let task = new Map();
-function addTask(id, callback) {
+function addTask(id: number, callback: callback) {
   if (task.has(callback)) {
     return;
   }
   task.set(id, callback);
 }
 
-function removeTask(id) {
+function removeTask(id: number) {
   if (task.has(id)) {
     task.delete(id);
   }
@@ -30,9 +32,9 @@ function useTask() {
     callback instanceof Function && callback();
   });
 }
-function removeInterval(callback) {
+function removeInterval(callback: timerCallback) {
   clearInterval(callback._timer);
-  callback.timer = void 0;
+  callback._timer = void 0;
 }
 
 export { addInterval, removeInterval, addTask, removeTask, useTask };

@@ -1,22 +1,32 @@
 import { readFileSync } from "node:fs";
-import { createConnection } from "mysql2";
+import { Connection, createConnection } from "mysql2";
 import { load } from "js-yaml";
-import Logger from "./log.js";
+import Logger from "./log";
 import * as IoRedis from "ioredis";
-function getYamlConfig() {
+import type { Config } from "./types";
+
+function getYamlConfig(): Config | null {
   try {
     // pwd = /Users/heart/Desktop/i/interval/interval-engine
-    return load(readFileSync(process.cwd() + "/app.yaml", { encoding: "utf8" }));
+    return load(
+      readFileSync(process.cwd() + "/app.yaml", { encoding: "utf8" })
+    );
   } catch (e) {
-    Logger.log(e);
+    Logger.error(e);
+    return null;
   }
 }
+type mysqlInstance = Connection | null;
+interface connectMysqlServer {
+  (mysqlConfig: Config["mysql"]): mysqlInstance;
+  _mysqlImpl?: mysqlInstance;
+}
 
-function connectMysqlServer(mysqlConfig) {
+const connectMysqlServer: connectMysqlServer = function (mysqlConfig) {
   if (connectMysqlServer._mysqlImpl) return connectMysqlServer._mysqlImpl;
   connectMysqlServer._mysqlImpl = createConnection(mysqlConfig);
   return connectMysqlServer._mysqlImpl;
-}
+};
 
 function closeMysqlServer() {
   if (connectMysqlServer._mysqlImpl) {
@@ -24,12 +34,16 @@ function closeMysqlServer() {
   }
   connectMysqlServer._mysqlImpl = null;
 }
-
-function connectRedisServer(redisConfig) {
+type redisInstance = IoRedis.Redis | null;
+interface connectRedisServer {
+  (redisConfig: Config["redis"]): redisInstance;
+  _redisImpl?: redisInstance;
+}
+const connectRedisServer: connectRedisServer = function (redisConfig) {
   if (connectRedisServer._redisImpl) return connectRedisServer._redisImpl;
   connectRedisServer._redisImpl = new IoRedis.default(redisConfig);
   return connectRedisServer._redisImpl;
-}
+};
 
 function closeRedisServer() {
   if (connectRedisServer._redisImpl) {

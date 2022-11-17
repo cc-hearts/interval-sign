@@ -1,49 +1,46 @@
-import Logger from "./log.js";
-
 const noop = () => {};
-function getHoursAndMinutes(date) {
+function getHoursAndMinutes(date: Date): string | null {
   if (date instanceof Date) {
-    return `${String(date.getHours()).padStart(2, 0)}-${date.getMinutes()}`;
+    return `${String(date.getHours()).padStart(2, "0")}-${date.getMinutes()}`;
   }
   return null;
 }
 
-function getCurrentDate() {
+function getCurrentDate(): string {
   const date = new Date();
   return `${date.getFullYear()}-${
     date.getMonth() + 1
   }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 }
 
-function compareHourAndMinutes(originDate) {
+function compareHourAndMinutes(originDate: string): boolean {
   if (!originDate) {
-    return;
+    return false;
   }
   const currentDate = getHoursAndMinutes(new Date());
-  // Logger.log("currentDate :", currentDate);
-  // Logger.log("originDate :", originDate);
   originDate = formatHoursAndMinutes(originDate);
   return currentDate === originDate;
 }
 
-function splitISOString(date) {
+function splitISOString(date: string): string {
   return date.split("T")[0];
 }
-function compareISODate(originDate) {
+function compareISODate(originDate: Date | string) {
   if (!originDate) {
-    return;
+    return false;
   }
   let currentDate = new Date().toISOString();
-  currentDate = splitISOString(String(currentDate));
-  originDate = splitISOString(originDate.toISOString());
-  // Logger.log("currentDate :", currentDate);
-  // Logger.log("originDate :", originDate);
-  return currentDate === originDate;
+  if (originDate instanceof Date) {
+    currentDate = splitISOString(String(currentDate));
+    originDate = splitISOString(originDate.toISOString());
+    return currentDate === originDate;
+  }
+  return false;
 }
 
-function formatHoursAndMinutes(date) {
+function formatHoursAndMinutes(date: string): string {
   const [hour, minute] = date.split(":");
-  return `${String(hour).padStart(2, 0)}-${minute}`;
+  return `${String(hour).padStart(2, "0")}-${minute}`;
 }
 
 function getCurrentDateFormat() {
@@ -60,5 +57,5 @@ export {
   compareHourAndMinutes,
   noop,
   compareISODate,
-  getCurrentDateFormat
+  getCurrentDateFormat,
 };

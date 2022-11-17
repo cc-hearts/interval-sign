@@ -4,11 +4,9 @@
  * @Date 2022-11-03
  */
 import axios from "axios";
-import { Shard, Sql } from "./index.js";
-import Logger from "./log.js";
+import Logger from "./log";
 function formatMethod(method) {
-  // TODO: 后续转大写
-  switch (String(method)) {
+  switch (String(method).toUpperCase()) {
     case "0":
     case "GET":
       return "GET";
@@ -21,13 +19,20 @@ function formatMethod(method) {
     case "3":
     case "DELETE":
       return "DELETE";
+    default:
+      return "";
   }
 }
-function request(url, method, params = {}, headers = {}) {
+function request(
+  url: string,
+  method: number | string,
+  params = {},
+  headers = {}
+) {
   method = formatMethod(method);
   return axios({
     url,
-    method: method || "get",
+    method: method || "GET",
     params: params,
     headers: {
       ...headers,
@@ -37,7 +42,7 @@ function request(url, method, params = {}, headers = {}) {
     },
   })
     .then((res) => {
-      Logger.log(`success ${url} ======================\r\n`, res.data);
+      Logger.info("request success", url, res.data);
     })
     .catch((err) => {
       Logger.log(`fetch request ${url} error:`, err);
