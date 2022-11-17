@@ -4,16 +4,15 @@ LABEL maintainer="heart<7362469@qq.com>"
 
 WORKDIR /usr/interval
 
-COPY packages/ /usr/interval/packages/
-
-COPY package.json /usr/interval/package.json
+COPY . .
 
 RUN npm config set registry https://registry.npm.taobao.org
 
 RUN npm install -g pnpm
 
-RUN npm install -g ts-node
+RUN pnpm install
+
 
 EXPOSE 5782
 
-CMD npm run start:engine
+CMD pnpm start:engine
