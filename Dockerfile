@@ -16,4 +16,4 @@ RUN npm install pnpm
 
 EXPOSE 5782
 
-CMD npm start:engine
+CMD npm run start:engine
