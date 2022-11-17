@@ -12,9 +12,7 @@ RUN npm config set registry https://registry.npm.taobao.org
 
 RUN npm install -g pnpm
 
-RUN pnpm install
-
-RUN pnpm --filter @repo/interval-engine install
+RUN npm install -g ts-node
 
 EXPOSE 5782
 
