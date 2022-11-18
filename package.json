@@ -7,7 +7,7 @@
     "start:engine": "pnpm --filter @repo/interval-engine start",
     "start:engine:ts": "pnpm --filter @repo/interval-engine start:ts",
     "build:engine": "pnpm --filter @repo/interval-engine build",
-    "start:v3": "pnpm --filter @repo/interval-task dev"
+    "dev": "pnpm --filter @repo/interval-task dev"
   },
   "keywords": [
     "vue",
