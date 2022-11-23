@@ -1,4 +1,4 @@
-const noop = () => {};
+const noop = () => { };
 function getHoursAndMinutes(date: Date): string | null {
   if (date instanceof Date) {
     return `${String(date.getHours()).padStart(2, "0")}-${date.getMinutes()}`;
@@ -8,9 +8,8 @@ function getHoursAndMinutes(date: Date): string | null {
 
 function getCurrentDate(): string {
   const date = new Date();
-  return `${date.getFullYear()}-${
-    date.getMonth() + 1
-  }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  return `${date.getFullYear()}-${date.getMonth() + 1
+    }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 }
 
 function compareHourAndMinutes(originDate: string): boolean {
@@ -19,6 +18,7 @@ function compareHourAndMinutes(originDate: string): boolean {
   }
   const currentDate = getHoursAndMinutes(new Date());
   originDate = formatHoursAndMinutes(originDate);
+  console.log(currentDate, originDate)
   return currentDate === originDate;
 }
 
@@ -45,9 +45,8 @@ function formatHoursAndMinutes(date: string): string {
 
 function getCurrentDateFormat() {
   const date = new Date();
-  return `${date.getFullYear()}-${
-    date.getMonth() + 1
-  }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  return `${date.getFullYear()}-${date.getMonth() + 1
+    }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 }
 
 function getHeapUsage() {
