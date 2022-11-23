@@ -21,7 +21,7 @@ type postType =
   | "application/json"
   | "multipart/form-data";
 // type requestBodyType = ArrayBuffer | Blob | FormData | string | Record<string, any>
-const urlArray = ["http://localhost:3363/"];
+const urlArray = ["http://localhost:3366/"];
 const baseUrl = urlArray[0];
 
 function isSpecifyResponseType(contentType: string, reg: RegExp): boolean {

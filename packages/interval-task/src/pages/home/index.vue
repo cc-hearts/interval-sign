@@ -6,7 +6,7 @@
       align="center"
     >
       <template v-slot:operation="data">
-        <a class="cursor-operation" @click="handleShowParams(data)">请求参数</a>
+        <a class="cursor-operation"  @click="handleShowParams(data)">请求参数</a>
       </template>
     </Table>
     <Dialog
@@ -79,6 +79,8 @@ onMounted(() => {
         };
       });
       dataPropsImpl.total = data.total;
+
+      console.log(dataPropsImpl)
     }
   });
 });
@@ -87,5 +89,6 @@ onMounted(() => {
 <style scoped>
 .cursor-operation {
   cursor: pointer;
+  text-decoration: underline;
 }
 </style>

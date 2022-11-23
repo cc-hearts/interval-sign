@@ -2,17 +2,17 @@
   <div class="grid-table">
     <!-- 表格头 -->
     <div class="grid grid-title" :style="styleAttr">
-      <template v-for="(item, index) in props.columns">
+      <template v-for="(item, index) in props.columns" :key="index">
         <div :class="['grid-title', textAlignAttr]">
           {{ item.title }}
         </div>
       </template>
     </div>
     <!-- 表格内容 -->
-    <div class="grid grid-body" :style="styleAttr">
-      <template v-for="(item, index) in props.columns">
-        <div :class="['grid-rows', textAlignAttr]">
-          <template v-for="record in props.dataSource">
+    <template v-for="record in props.dataSource">
+      <div class="grid grid-body" :style="styleAttr">
+        <template v-for="(item, index) in props.columns">
+          <div :class="['grid-rows', textAlignAttr]">
             <template v-if="item.slot">
               <slot
                 :name="item.slot.name"
@@ -22,12 +22,12 @@
               ></slot>
             </template>
             <template v-else>
-              {{ record[item.field] || "" }}
+              {{ record[item.field || ""] }}
             </template>
-          </template>
-        </div>
-      </template>
-    </div>
+          </div>
+        </template>
+      </div>
+    </template>
   </div>
 </template>
 
