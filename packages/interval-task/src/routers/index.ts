@@ -5,6 +5,11 @@ export const routes = [
     name: "Home",
     component: () => import("../pages/home/index.vue"),
   },
+  {
+    path: "/dict",
+    name: "Dict",
+    component: () => import("../pages/dict/index.vue"),
+  },
   // {
   //   path: '/:pathMatch(.*)',
   //   name: '404',

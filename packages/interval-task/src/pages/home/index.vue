@@ -6,7 +6,7 @@
       align="center"
     >
       <template v-slot:operation="data">
-        <a class="cursor-operation"  @click="handleShowParams(data)">请求参数</a>
+        <a class="cursor-operation" @click="handleShowParams(data)">请求参数</a>
       </template>
     </Table>
     <Dialog
@@ -14,7 +14,7 @@
       @cancel="handleCancelDialog"
       :title="dialogProps.title"
     >
-      <div ref="codeRef" style="width: 100%; min-height: 240px;"></div>
+      <div ref="codeRef" style="width: 100%; min-height: 240px"></div>
     </Dialog>
   </div>
 </template>
@@ -22,12 +22,13 @@
 <script setup lang="ts">
 import { nextTick, onMounted, reactive, ref } from "vue";
 import Table from "../../components/table/index.vue";
-import { intervalTaskColumn } from "./const";
+import { intervalTaskColumn } from "../../constants/const";
 import { createMonacoEditor } from "../../feature/monaco/init";
-import { getList } from "./service";
-import type { taskInterface } from "./type";
+import { getList } from "@/apis/interval";
+import type { taskInterface } from "@/types/types";
 import Dialog from "../../components/dialog/dialog.vue";
 import type { editor } from "monaco-editor";
+
 const tableProps = reactive({
   columns: intervalTaskColumn,
 });
@@ -80,7 +81,7 @@ onMounted(() => {
       });
       dataPropsImpl.total = data.total;
 
-      console.log(dataPropsImpl)
+      console.log(dataPropsImpl);
     }
   });
 });

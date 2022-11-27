@@ -2,31 +2,33 @@ export const noop = () => {
   /** noop */
 };
 export function objectToParams(obj: Record<string, any> | undefined): string {
-  if (typeof obj === 'object') {
-    let params = '';
+  if (typeof obj === "object") {
+    let params = "";
     let flag = true;
     for (const key in obj) {
-      params += (flag ? '' : '&') + `${key}=${encodeURI(obj[key])}`;
+      params += (flag ? "" : "&") + `${key}=${encodeURI(obj[key])}`;
       flag = false;
     }
     return params;
   }
-  return '';
+  return "";
 }
 
-export function clearObjectValue(obj: Record<string, any>): Record<string, any> {
+export function clearObjectValue(
+  obj: Record<string, any>
+): Record<string, any> {
   const tempObj = Object.assign({}, obj);
   Object.keys(tempObj).forEach((key: keyof typeof obj) => {
     switch (typeof tempObj[key]) {
-      case 'string': {
-        tempObj[key] = '';
+      case "string": {
+        tempObj[key] = "";
         break;
       }
-      case 'number': {
+      case "number": {
         tempObj[key] = 0;
         break;
       }
-      case 'boolean': {
+      case "boolean": {
         tempObj[key] = false;
       }
     }
@@ -44,3 +46,7 @@ export const isValidJSON = (string: string): boolean => {
     return false;
   }
 };
+
+export function toggleVisible<T extends { value: boolean }>(data: T) {
+  data.value = !data.value;
+}

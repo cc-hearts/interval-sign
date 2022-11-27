@@ -5,3 +5,5 @@ export interface taskInterface {
   isDelete: 0 | 1;
   createTime: Date;
 }
+
+export type callback = (...args: any[]) => any;

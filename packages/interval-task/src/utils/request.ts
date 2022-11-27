@@ -15,13 +15,13 @@ enum requestType {
   DELETE = "DELETE",
 }
 const successCode = [200, 0];
-type params = Record<string, any>;
+export type params = Record<string, any>;
 type postType =
   | "application/x-www-form-urlencoded"
   | "application/json"
   | "multipart/form-data";
 // type requestBodyType = ArrayBuffer | Blob | FormData | string | Record<string, any>
-const urlArray = ["http://localhost:3366/"];
+const urlArray = ["http://localhost:3363/"];
 const baseUrl = urlArray[0];
 
 function isSpecifyResponseType(contentType: string, reg: RegExp): boolean {
