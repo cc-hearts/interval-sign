@@ -1,12 +1,12 @@
 <template>
   <n-modal :show="visible" @update:show="handleCancelModal">
     <n-card
-      :style="{ width }"
-      :title="title"
-      :bordered="false"
-      size="huge"
-      role="dialog"
-      aria-modal="true"
+        :style="{ width }"
+        :title="title"
+        :bordered="false"
+        size="huge"
+        role="dialog"
+        aria-modal="true"
     >
       <template #header-extra>
         <slot name="header-extra"></slot>
@@ -26,8 +26,9 @@
 
 <script setup lang="ts">
 import Button from "@/components/button/index.vue";
+
 const emits = defineEmits(["update:visible", "submit"]);
-const { visible } = defineProps({
+const {visible} = defineProps({
   title: {
     type: String,
     default: "",
@@ -45,14 +46,16 @@ const { visible } = defineProps({
 function handleCancelModal() {
   emits("update:visible", false);
 }
+
 function handleSubmitModal() {
   emits("submit");
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .modal-footer {
   text-align: right;
+
   button:first-child {
     margin-right: 8px;
   }

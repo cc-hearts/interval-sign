@@ -66,6 +66,7 @@ const subFormProps = reactive({
     { field: "dictKey", label: "字典编码", type: "input" },
     { field: "dictName", label: "字典项名", type: "input" },
     { field: "dictValue", label: "字典项值", type: "input" },
+    { field: "remark", label: "备注", type: "input" },
     { field: "status", label: "是否启用", type: "switch" },
   ],
 });
