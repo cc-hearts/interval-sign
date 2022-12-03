@@ -4,7 +4,7 @@ import { load } from "js-yaml";
 import Logger from "./log.js";
 import * as IoRedis from "ioredis";
 import type { Config } from "./types";
-
+import { PrismaClient } from "@prisma/client";
 function getYamlConfig(): Config | null {
   try {
     // pwd = /Users/heart/Desktop/i/interval/interval-engine
@@ -51,6 +51,21 @@ function closeRedisServer() {
   }
   connectRedisServer._redisImpl = null;
 }
+let prisma: PrismaClient | null;
+
+function getPrismaInstance() {
+  if (prisma === void 0 || prisma === null) {
+    prisma = new PrismaClient();
+  }
+  return prisma;
+}
+
+function closePrismaInstance() {
+  if (prisma) {
+    prisma.$disconnect();
+    prisma = null;
+  }
+}
 
 export {
   getYamlConfig,
@@ -58,4 +73,6 @@ export {
   closeMysqlServer,
   connectRedisServer,
   closeRedisServer,
+  getPrismaInstance,
+  closePrismaInstance
 };

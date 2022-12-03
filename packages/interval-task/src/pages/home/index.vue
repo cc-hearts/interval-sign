@@ -80,8 +80,6 @@ onMounted(() => {
         };
       });
       dataPropsImpl.total = data.total;
-
-      console.log(dataPropsImpl);
     }
   });
 });
