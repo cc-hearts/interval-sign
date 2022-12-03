@@ -26,5 +26,4 @@ dist-ssr
 app.yaml
 
 pnpm-lock.yaml
-
-prisma
+.env
