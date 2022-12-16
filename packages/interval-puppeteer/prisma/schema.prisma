@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model interTask {
+  id          Int      @id @default(autoincrement())
+  title       String   @default("")
+  description String   @default("")
+  url         String
+  interTime   DateTime @db.Time(0)
+  method      Int      @default(0)
+  params      String   @default("{}")
+  cookie      String   @db.VarChar(3000)
+  callback    String   @default("")
+  createTime  DateTime @default(now())
+  updateTime  DateTime @default(now())
+  isDelete    Int      @default(0)
+}
