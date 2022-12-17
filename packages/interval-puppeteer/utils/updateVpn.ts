@@ -1,10 +1,15 @@
-const puppeteer =  require("puppeteer").default
-const { getYamlConfig } = require('./config')
+import { logger } from '@cc-heart/utils';
+import { PrismaClient } from '@prisma/client';
+import puppeteer from 'puppeteer'
+import { getYamlConfig } from './config.js';
+
 const sleep = (sleep: number) =>
   new Promise((resolve) => setTimeout(resolve, sleep));
 
-module.exports = async function(prisma, id ) {
-  const { url,userName,password } = getYamlConfig()
+export default async function (prisma:PrismaClient, id: number | string) {
+  const { login } = getYamlConfig()
+  if (login === null) return
+  const { url, userName, password } = login
   const browser = await puppeteer.launch({
     // 路径
     executablePath:
@@ -23,9 +28,8 @@ module.exports = async function(prisma, id ) {
 
   await sleep(10 * 1000);
 
-  const cookie = await page.evaluate(() => {
+  const {cookies} = await page.evaluate(() => {
     return {
-      // @ts-ignore
       cookies: document.cookie,
     };
   });
@@ -34,9 +38,9 @@ module.exports = async function(prisma, id ) {
       id: Number(id),
     },
     data: {
-      cookie
+      cookie: cookies
     },
   });
-  logger.success(cookie);
+  logger.success(cookies);
   return 'cookie'
 }

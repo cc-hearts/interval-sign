@@ -1,16 +1,25 @@
-const { logger } =  require("@cc-heart/utils")
-const { load } = require('js-yaml')
-const { readFileSync} = require('fs')
-function getYamlConfig(): null {
+import { load} from 'js-yaml'
+import { readFileSync } from 'fs'
+import { logger } from '@cc-heart/utils';
+interface config {
+  login: {
+    url: string
+    userName: string
+    password: string
+  }
+  config: {
+    port: number
+  }
+}
+let config: config
+export function getYamlConfig(): config | null {
   try {
-    // pwd = /Users/heart/Desktop/i/interval/interval-engine
-    return load(
+    config = load(
       readFileSync(process.cwd() + "/app.yaml", { encoding: "utf8" })
     );
+    return config
   } catch (e) {
     logger.error(e);
     return null;
   }
 }
-export {}
-exports.getYamlConfig = getYamlConfig

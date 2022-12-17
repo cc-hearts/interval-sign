@@ -1,15 +1,13 @@
-const express = require('express')
-const { PrismaClient } = require("@prisma/client");
-const updateVpn = require('./utils/updateVpn')
+import { Router } from "express";
+import { PrismaClient } from '@prisma/client'
+import updateVpn from "./utils/updateVpn.js";
+const router = Router()
 
-const router = express.Router()
 router.get('/update/vpn/:id',async (req,res) => {
   const prisma = new PrismaClient({})
   const { id } = req.params
-  const ans = await updateVpn(prisma,id)
+  const ans = await updateVpn(prisma, id)
   res.send(ans)
 })
 
-module.exports = router
-
-export {}
+export default router
